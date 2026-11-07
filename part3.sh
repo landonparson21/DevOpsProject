@@ -1,7 +1,6 @@
 #!/bin/bash
 
 add_user_manually() {
-	
 	read -p "Enter first name: " first_name
 	read -p "Enter last name: " last_name
 
@@ -21,11 +20,11 @@ add_user_manually() {
 	echo "Password: $password"
 	echo ""
 	echo "User credentials generated successfully!"
-	
+
 	sudo useradd -m "$username"
 	echo "$username:$password" | sudo chpasswd
 	echo "User created with username $username"
 }
-	
 
-
+add_user_manually
+>>>>>>> 0f8ec279de8fac8c96caa17334ace741e037a273
