@@ -40,6 +40,7 @@ echo "$1:$2" | sudo chpasswd
 }
 
 # Main Loop
+source ./part3.sh
 choice=0
 while [[ $choice != 3 ]]; do
 	echo "1. Add Users Automatically"
@@ -57,6 +58,7 @@ while [[ $choice != 3 ]]; do
 		create_users
 	elif [[ $choice == 2 ]]; then
 		echo "Adding user manually"
+		add_user_manually
 	elif [[ $choice == 3 ]]; then
 		exit 0
 	fi
