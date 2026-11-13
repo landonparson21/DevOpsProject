@@ -11,7 +11,7 @@ Also if you do not have curl installed, open your terminal and run: sudo apt ins
 To use the software download the userMigration.sh file into a new folder, then right click in the space in the folder
 and select open in terminal, then execute the following commands:
 
-chmod +x userMigration.sh 
+chmod +x userMigration.sh  
 ./userMigration.sh
 
 Note: You may be asked to enter your password
