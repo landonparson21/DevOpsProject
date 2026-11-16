@@ -7,10 +7,11 @@ requires sudo access. Automatic creation also requires internet access.
 ## Requirements
 
 The licensing tools use Bash, OpenSSL 1.1.1 or later, and standard GNU utilities
-such as `mktemp`, `realpath`, and `rm`, available on Ubuntu. Check OpenSSL with:
+such as `mktemp`, `realpath`, and `rm`, available on Ubuntu. Check OpenSSL and curl with:
 
 ```sh
 openssl version
+curl --version
 ```
 
 If OpenSSL or curl is missing, install the missing package:
@@ -20,6 +21,18 @@ sudo apt install openssl curl
 ```
 
 Curl is used by the automatic account creation option.
+
+## Quick Start
+
+1. Clone the repository:
+```sh
+git clone https://github.com/landonparson21/DevOpsProject.git
+```
+2. Move the license.dat file into the cloned project directory.
+3. Run the program (license.sh is not the program, that script is the license encryption engine):
+```sh
+bash runner.sh
+```
 
 ## Build the licensed version
 
