@@ -14,14 +14,12 @@ create_users() {
       firstN="${fullN%% *}"
       lastN="${fullN#* }"
       username="$firstN.$lastN"
-      password="$firstN""$lastN""HALBERD"
-      add_user "$username" "$password"
+      add_user "$username" 
    done
    firstN="${names%% *}"
    lastN="${names#* }"
    username="$firstN.$lastN"
-   password="$firstN""$lastN""HALBERD"
-   add_user "$username" "$password"
+   add_user "$username" 
    echo ""
 }
 
@@ -37,7 +35,7 @@ add_user_manually() {
 
 	#generate username and password
 	username="$(echo "${first_name}.${last_name}" | tr '[:upper:]' '[:lower:]')"
-	password="$(echo "${first_name}${last_name}" | tr '[:upper:]' '[:lower:]')HALBERD"
+	password="$(tr -dc 'A-Za-z0-9!?%=' < /dev/urandom | head -c 12)"
 
 	echo ""
 	echo "Generated User Information: "
@@ -46,24 +44,28 @@ add_user_manually() {
 	echo ""
 	echo "User credentials generated successfully!"
 
+  echo "$username: $password" >> generated_password_list.txt
+
 	sudo useradd -m "$username"
 	echo "$username:$password" | sudo chpasswd
 	echo "User created with username $username"
 }
 
 #Function to add a new user
-# Takes 2 arguments: username and password
+# Takes 1 argument: username 
 add_user() {
 if [ -z "$1" ]; then
    return 1
 fi
-if [ -z "$2" ]; then
-   return 1
-fi
+
 # This adds the user and sets password
 sudo useradd -m "$1"
-echo "$1:$2" | sudo chpasswd
+password=$(tr -dc 'A-Za-z0-9!?%=' < /dev/urandom | head -c 12)
+
+echo "$1:$password" | sudo chpasswd
+
 echo "Created user with username $1"
+echo "$1: $password" >> generated_password_list.txt
 }
 
 # Main Loop
